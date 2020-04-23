@@ -2,18 +2,41 @@
 
 <head>
     <title>{%block title %}Online Exam | Login{%endblock%}</title>
+    <style>
+        body {
+          background: #6c6a6a;
+          /* fallback for old browsers */
+          background: -webkit-linear-gradient(right, #6c6a6a, 6c6a6a);
+          background: -moz-linear-gradient(right, 6c6a6a, 6c6a6a);
+          background: -o-linear-gradient(right, 6c6a6a, 6c6a6a);
+          background: linear-gradient(to left, 6c6a6a, 6c6a6a);
+          font-family: "Roboto", sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          padding: 12px;
+          margin: 12px;
+          font-size: 18px;
+          text-transform: capitalize;
+          line-height: 28px;
+          font-family: Arial, Helvetica, sans-serif;
+          text-align: justify;
+          color: black;     
+        }
+        </style>
 </head>
-<div class="login-page">
+<div class="login-page" style="background-image: url('C:\Users\admin\project\oequiz\bg.jpg');">
     <div class="form">
         <center><img src="{%static 'ICT NEW LOGO.jpg' %}" alt="Ganpat University" width="320px "></center>
         <form class="login-form" action="" method="POST">
             {% csrf_token %}
-            <input type="textbox" name="userid" placeholder="Username">
-            <input type="password" name="password" placeholder="Password"><br/>
+            <span style="color: red;">{{ message }}</span>
+            <input type="textbox" name="userid" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required><br/>
             <input type="submit" class="ab" value="Login">
-            <input type="submit" class="forgot" value="Forgot Password ?">
-
-        </form>
+            </form>
+            <form class="login-form" action="" method="GET">
+            <input type="submit" class="forgot" value="Forgot-Password?" name="submitbutton">
+            </form>
     </div>
 </div>
 {%endblock%}

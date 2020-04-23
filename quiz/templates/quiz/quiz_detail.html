@@ -3,7 +3,19 @@
 {% block title %}
 {{ quiz.title }}
 {% endblock %}
-
+<style>
+  body
+        {
+            padding: 12px;
+            margin: 12px;
+            font-size: 18px;
+            line-height: 28px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: justify;
+            color: black;
+            text-transform: capitalize;
+        }
+</style>
 {% block content %}
 
 <h2>{{ quiz.title }}</h2>
@@ -12,9 +24,11 @@
   <h4>{% trans "You will only get one attempt at this quiz" %}.</h4>
 {% endif %}
 <p>{{ quiz.description }}</p>
+<center>
 <p>
   <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
 	{% trans "Start Exam" %}
   </a>
 </p>
+</center>
 {% endblock %}

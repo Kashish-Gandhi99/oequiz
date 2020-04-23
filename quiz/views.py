@@ -1,5 +1,5 @@
 import random
-
+from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render , redirect
@@ -24,7 +24,7 @@ def loginuser(request):
         user = authenticate(request, username=userid, password=password)
         print(user)
         if user is None: 
-            return render(request,'error.html')	        
+            return render(request,'login.html',{"message":"Wrong Credentials"})	
         else:
             login(request,user)
             if(len(userid)==6):
@@ -34,9 +34,14 @@ def loginuser(request):
             elif(len(userid)==5):
                 return redirect("admin/")
             else:
-                return render(request,'error.html')
+                return render(request,'login.html',{"message":"Wrong Credentials"})	
     else:
-        return render(request,'login.html')	
+        try:
+            if request.GET['submitbutton']=="Forgot-Password?":
+                return render(request,'login.html',{"message":"Please Contact Site Administrator"})	
+        except MultiValueDictKeyError:
+            pass
+        return render(request,'login.html')
 
 def userlogout(request):
     logout(request)
