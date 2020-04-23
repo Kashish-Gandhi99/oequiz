@@ -25,7 +25,7 @@ SECRET_KEY = '=am4&=2vbsucy%p86-%6j#)4c3q2daz5cix%r%r$q5j(x0&g__'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-52-205-250-149.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'crispy_forms',
+    'crispy_forms',
     'quiz',
     'multichoice',
     'true_false',
