@@ -1,12 +1,3 @@
-yamllint==1.21.0
-zdesk==2.7.1
-zipp==3.1.0
-zope.deprecation==4.4.0
-websockets==8.1
-Werkzeug==0.16.1
-WTForms==2.2.1
-xhtml2pdf==0.2.4
-xlrd==1.2.0
 alembic==1.4.1
 amqp==2.5.2
 apache-airflow==1.10.9
@@ -35,6 +26,7 @@ distlib==0.3.0
 Django==3.0.2
 django-crispy-forms==1.8.1
 django-model-utils==4.0.0
+django-quiz-app==0.5.1
 django-taggit==1.2.0
 docutils==0.16
 ez-setup==0.9
@@ -134,3 +126,12 @@ vine==1.3.0
 virtualenv==20.0.15
 wcwidth==0.1.9
 webencodings==0.5.1
+websockets==8.1
+Werkzeug==0.16.1
+WTForms==2.2.1
+xhtml2pdf==0.2.4
+xlrd==1.2.0
+yamllint==1.21.0
+zdesk==2.7.1
+zipp==3.1.0
+zope.deprecation==4.4.0

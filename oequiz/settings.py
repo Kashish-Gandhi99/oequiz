@@ -25,7 +25,7 @@ SECRET_KEY = '=am4&=2vbsucy%p86-%6j#)4c3q2daz5cix%r%r$q5j(x0&g__'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-52-205-250-149.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['www.oequiz.com','34.236.101.243','ec2-34-236-101-243.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -77,46 +77,18 @@ WSGI_APPLICATION = 'oequiz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {
 
-'default': {
-
-    'ENGINE': 'django.db.backends.postgresql',
-
-    'NAME': 'onlineexams',
-
-    'USER': 'postgres',
-
-    'PASSWORD': '12345678',
-
-    'HOST': 'qwerty54321.clnris2ddb2e.us-east-1.rds.amazonaws.com',
-
-    'PORT': '5432',
-
-    }
-
-}
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'OE',
+        'NAME': 'Online Exam',
         'USER': 'postgres',
-        'PASSWORD': 'admin', 
+        'PASSWORD': '1234', 
         'HOST': 'localhost'
     }
 }
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
-'''
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

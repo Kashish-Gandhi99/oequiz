@@ -46,20 +46,21 @@
   {% if exams %}
 
   <hr>
-
+<center>
   <h1>{% trans "Previous exam papers" %}</h1>
+
   <p class="lead">
 	{% trans "Below are the results of exams that you have sat." %}
   </p>
-
+</center>
   <table class="table table-bordered table-striped">
 
 	<thead>
 	  <tr>
 		<th>{% trans "Quiz Title" %}</th>
 		<th>{% trans "Score" %}</th>
-		<th>{% trans "Possible Score" %}</th>
-		<th>%</th>
+		<th>{% trans "Possible Maximum Score" %}</th>
+		<th>Result( IN Percentage )</th>
 	  </tr>
 	</thead>
 
@@ -71,7 +72,7 @@
 		<td>{{ exam.quiz.title }}</td>
 		<td>{{ exam.current_score }}</td>
 		<td>{{ exam.get_max_score }}</td>
-		<td>{{ exam.get_percent_correct }}</td>
+		<td>{{ exam.get_percent_correct }} %</td>
 	  </tr>
 
 	  {% endfor %}

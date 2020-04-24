@@ -16,7 +16,7 @@
 <!-- styles -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <title>Welcome | {{user.username}}</title>
+    <title>Welcome | {{user.first_name}} {{user.last_name}}</title>
     <style>
         .exam
         {
@@ -118,7 +118,7 @@
         }
         
         .dropdown-content a:hover {
-            background-color: #3e8e41;
+            background-color: #999999;
         }
         
         .dropdown:hover .dropdown-content {
@@ -126,19 +126,8 @@
         }
         
         .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+            background-color: #999999;
             color: black;
-        }
-        body
-        {
-            padding: 12px;
-            margin: 12px;
-            font-size: 18px;
-            line-height: 28px;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: justify;
-            color: black;
-            text-transform: capitalize;
         }
     </style>
 
@@ -146,30 +135,18 @@
 
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     <div class="header">
-        <img src="{%static 'ICT NEW LOGO.jpg' %}" width="200px"></a>
+        <img src="{%static 'ICT NEW LOGO.jpg' %}" width="300px"></a>
         <div class="header-right">
             <a href="{% url 'quiz_marking' %}">Home</a>
-            <div class="dropdown">
-                <button class="dropbtn">catogary</button>
-                <div class="dropdown-content">
-                    <a href="{% url 'createcategory'%}">Create Category</a>                 
-                </div>
-            </div>
-            <a href="{% url 'createsubcategory'%}">Create Sub-Category</a>
-            <a href="{% url 'createexam'%}">Create Exam</a> 
-            <a href="{% url 'tfque'%}">Add T/F Que</a>
-            <a href="{% url 'mcque'%}">Add MC Que</a>
-            <a href="{% url 'tfque'%}">Add eassy</a>
-            <a href="{% url 'importstudentcsv'%}">Import CSV</a>
-            <a href="{% url 'importquecsv'%}">Import Questions CSV</a>
+            <a href="{% url 'importstudentcsv'%}">Import</a>
+            <a href="{% url 'adminuser' %}">Add Exam</a>
 
             <div class="dropdown">
-                <button class="dropbtn">{{user.username}}</button>
+                <button class="dropbtn">{{user.first_name}} {{user.last_name}}</button>
                 <div class="dropdown-content">
                     <a href="{% url 'logout' %} ">Logout</a>
                 </div>
             </div>
-            
         </div>
     </div>
     {%block content%} {%endblock%}

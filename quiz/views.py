@@ -1,5 +1,5 @@
 import random
-from django.utils.datastructures import MultiValueDictKeyError
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render , redirect
@@ -24,7 +24,8 @@ def loginuser(request):
         user = authenticate(request, username=userid, password=password)
         print(user)
         if user is None: 
-            return render(request,'login.html',{"message":"Wrong Credentials"})	
+            messages.info(request, 'No User Found. Please Contact Admin.')
+            return render(request,'login.html')        
         else:
             login(request,user)
             if(len(userid)==6):
@@ -34,18 +35,20 @@ def loginuser(request):
             elif(len(userid)==5):
                 return redirect("admin/")
             else:
-                return render(request,'login.html',{"message":"Wrong Credentials"})	
+                messages.info(request, 'Not Valid User...')
+                return render(request,'login.html')
     else:
-        try:
-            if request.GET['submitbutton']=="Forgot-Password?":
-                return render(request,'login.html',{"message":"Please Contact Site Administrator"})	
-        except MultiValueDictKeyError:
-            pass
-        return render(request,'login.html')
+        return render(request,'login.html')	
 
 def userlogout(request):
     logout(request)
-    return redirect('/')
+    return render(request,'login.html')
+
+def myprofile(request):
+    return render(request, 'myprofile.html')
+
+def adminuser(request):
+    return redirect("admin/")
 
 def change_password(request):
     if request.method == 'POST':
@@ -441,7 +444,7 @@ def importstudentcsv(request):
 
     # prompt is a context variable that can have different values      depending on their context
     prompt = {
-        'order': 'Order of the CSV should be Username , Password , First_name , Last_name ,Email'   
+        'order': 'NOTE : Order of the CSV should be Username , Password , First_name , Last_name ,Email'   
               }
     # GET request returns the value of the data with the specified key.
     if request.method == "GET":
@@ -449,15 +452,22 @@ def importstudentcsv(request):
     csv_file = request.FILES['file']
     # let's check if it is a csv file
     if not csv_file.name.endswith('.csv'):
-        messages.error(request, 'THIS IS NOT A CSV FILE')
-    data_set = csv_file.read().decode('UTF-8')
-    # setup a stream which is when we loop through each line we are able to handle a data in a stream
-    io_string = io.StringIO(data_set)
-    next(io_string)
-    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-        User.objects.create_user(username=column[0],password=column[1],first_name=column[2],last_name=column[3],email=column[4])
+        messages.info(request, 'THIS IS NOT A CSV FILE')
+    else:
+        try:
+            data_set = csv_file.read().decode('UTF-8')
+            io_string = io.StringIO(data_set)
+            next(io_string)
+            for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+                    User.objects.create_user(username=column[0],password=column[1],first_name=column[2],last_name=column[3],email=column[4])
+            return redirect('quiz_marking')
+        except:
+            messages.info(request, 'Somthing Wrong With This FILE.')
+            return redirect('importstudentcsv')
+    return redirect('importstudentcsv')
+        # setup a stream which is when we loop through each line we are able to handle a data in a stream
+
     
-    return redirect(indexf)
 
 def createcategory(request):
     template = "createcategory.html"
@@ -528,6 +538,8 @@ def importquecsv(request):
     for index, column in df.iterrows() :
         a = Question(content = str(column[0]) , explanation = str(column[1]) , category_id = 4)
         a.save()
+
+
     return redirect(indexf)
 
 

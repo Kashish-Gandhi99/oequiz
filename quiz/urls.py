@@ -3,18 +3,15 @@ try:
 except ImportError:
     from django.urls import re_path as url , path
 from .views import *
+
 urlpatterns = [
 
     path('',loginuser),
     path('logout',userlogout, name = 'logout'),
     path('importstudentcsv',importstudentcsv, name = 'importstudentcsv'),
-    path('createcategory',createcategory, name = 'createcategory'),
-    path('admin/quiz/subcategory/add/',createsubcategory, name = 'createsubcategory'),
-    path('createexam',addexam, name = 'createexam'),
-    path('tfque',tfque, name = 'tfque'),
-    path('mcque',mcque, name = 'mcque'),
-    #path('tfque',tfque, name = 'tfque'),
-    path('importquecsv',importquecsv, name = 'importquecsv'),
+    path('myprofile',myprofile, name = 'myprofile'),
+    path('adminuser',adminuser, name = 'adminuser'),
+
     url(r'^password/$', change_password, name='change_password'),
     
     url(r'^quizlist/$',
