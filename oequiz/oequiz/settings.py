@@ -87,7 +87,7 @@ DATABASES = {
     'HOST': 'qwerty54321.clnris2ddb2e.us-east-1.rds.amazonaws.com',
     'PORT': '5432',
     }
-}
+	}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
